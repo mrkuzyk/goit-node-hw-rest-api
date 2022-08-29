@@ -1,11 +1,8 @@
-const contactsPath = require('./contactsPath');
-const overwritingContacts = require('./overwritingContacts');
+const handleSchemaValidationError = require('./handleSchemaValidationError');
 const RequestError = require('./RequestError');
-
 
 
 module.exports = {
     RequestError,
-    overwritingContacts,
-    contactsPath
+    handleSchemaValidationError,
 };
