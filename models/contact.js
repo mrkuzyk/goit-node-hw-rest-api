@@ -12,12 +12,16 @@ const contactSchema = new Schema({
     },
     phone: {
         type: String,
-        unique: true,
     },
     favorite: {
         type: Boolean,
         default: false,
     },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true,
+    }
 },{versionKey: false, timestamps: true });
 
 contactSchema.post('save', handleSchemaValidationError);
@@ -35,7 +39,7 @@ const updateFavoriteSchema = Joi.object({
 
 const schemas = {
     addSchema,
-    updateFavoriteSchema
+    updateFavoriteSchema,
 };
 
 const Contact = model('contact', contactSchema);
