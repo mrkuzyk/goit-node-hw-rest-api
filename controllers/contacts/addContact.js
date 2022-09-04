@@ -6,10 +6,11 @@ const addContact = async (req, res, next) => {
         const { error } = schemas.addSchema.validate(req.body);
 
         if (error) {
-            throw RequestError(400, error.message)
+            throw RequestError(400, error.message);
         };
 
-        const newContact = await Contact.create(req.body);
+        const { _id: owner } = req.user;
+        const newContact = await Contact.create({ ...req.body, owner });
         res.status(201).json({ newContact });
     } catch (error) {
         next(error);
